@@ -4,7 +4,7 @@ class University():
         self.name = name 
     
     def __str__(self):
-        return self.name
+        return self.name + "is the best!"
     
 my_university = University('UEK Kraków')
 print(my_university)      
