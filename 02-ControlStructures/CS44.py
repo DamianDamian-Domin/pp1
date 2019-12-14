@@ -1,14 +1,18 @@
-'''
+''''
 program
 '''
-limit = int(input('Podaj limit prędkości (km/h): '))
-predkosc = float(input('Podaj prędkość pojazdu (km/h): '))
-przekroczenie = predkosc - limit
-if przekroczenie <= 0:
-        mandat = 0
-    elif przekroczenie <= 10:
-        mandat = przekroczenie*5
-    else:
-        mandat = 10*5 + (przekroczenie-10)*15
-        
-    print('Mandat (zł): {:.2f}'.format(mandat))    
+
+V1 = int(input("Podaj limit prędkości: "))
+V2 = int(input("Podaj prędkość pojazdu: "))
+V3 = V2 - V1
+
+if V3 <= 0:
+    print("Brak mandatu")
+elif V3 <= 10:
+    for x in range(V3 + 1):
+        x = x * 5
+    print(f'Mandat wynosi {x} zł') 
+else:
+    for x in range(V3 + 1):
+        x = x * 15
+    print(f'Mandat wynosi {x} zł')         

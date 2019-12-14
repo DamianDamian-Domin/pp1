@@ -1,5 +1,4 @@
-# MyPersonalData
-imie = "Damian"
-nazwisko = "Domin"
-wiek = "20"
-print(imie, nazwisko, wiek)
+b = int(input("sda: "))
+print(b)
+
+          

@@ -17,7 +17,7 @@ if int(rok) <= 99 and int(rok) >= 18:
 else:
     rok = "20" + str(rok)   
 
-wiek = 2018 - int(rok)
+wiek = 2019 - int(rok)
 
 print(f'Osoba o numerze {pesel}\n Płeć = {płeć}\n Wiek = {wiek}')
 

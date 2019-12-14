@@ -3,8 +3,6 @@ program
 '''
 
 tablica = [2, 3, 5, 2, 9, 8 ,1 ,3, 9, 1, 1, 4, 7, 7, 1, 4, 4, 4,]
-
-
 def mediana():
     if len(tablica)%2 == 0:
         tablica.sort()
@@ -29,9 +27,7 @@ def dominata():
             var = y
             liczba = x               
     return liczba
-
 p = input("Wybierz funkcje: mediana/dominata: ") 
-
 if p == "mediana":
     print(f'Mediana wynosi: {mediana()}')
 elif p == "dominata":
