@@ -1,5 +1,5 @@
 '''
-program
+program telewizor DOMINO
 '''
 
 class Telewizor():
