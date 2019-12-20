@@ -1,3 +1,4 @@
+import statistics, random
 class University():
     def __init__(self):
         self.name = 'UEK'
@@ -153,7 +154,52 @@ class lot():
         if self.is_in_air == 1:
             print(f"Tu {self.flight_number}, moja wyskość lotu to: {self.height}")
         else:
-            print("Samolot na pasie startowym") 
+            print("Samolot na pasie startowym")
+
+class statystyka():
+    def __init__(self, nums):
+        self.nums = nums
+    def show(self):
+        print(', '.join(str(x) for x in self.nums))
+    def add_numbers(self):
+        x = int(input("Wprowadź liczbę do tablicy: "))
+        self.nums.append(x)
+        self.nums.sort()
+    def max(self):
+        print(max(self.nums))
+    def min(self):
+        print(min(self.nums))
+    def ave(self):
+        print(statistics.mean(self.nums))
+    def med(self):
+        print(statistics.median(self.nums))  
+
+class termometr():
+    def __init__(self):
+        self.temp = 36.6
+    def measure_temp(self):
+        self.temp = random.uniform(34.0, 42.0)
+        if self.temp >= 37.0 and self.temp < 41.0:
+            print(f'Temperatura wynosi: {self.temp:.2f} (gorączka)')
+        elif self.temp >= 41.0:
+            print(f'Temperatura wynosi: {self.temp:.2f} (ZAGROŻENIE ŻYCIA)')
+        else:
+            print(f'Temperatura wynosi: {self.temp:.2f}')
+class kontakty():
+    def __init__(self):
+        self.nazwy = []
+        self.email = []
+        self.telefon = []
+    def add_contact(self):
+        self.nazwy.append(str(input("Wprowadź imię i nazwisko")))
+        self.email.append(str(input("Wprowadź email")))
+        self.telefon.append(str(input("Wprowadź telefon")))
+    def show_contacts(self):
+        print("".join(str(x) for x in self.nazwy), "        \n".join(str(x) for x in self.email), "       \n".join(str(x) for x in self.telefon))                     
+
+
+
+
 
 
 
