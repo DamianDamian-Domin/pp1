@@ -95,12 +95,129 @@ class maths():
     def circle(r):
         p = pi * r**2
         return f'Pole wynosi: {p:.2f}'
+    @staticmethod    
     def rectangle(a, b):
         p = a * b
         return f'Pole wynosi: {p:.2f}'
+    @staticmethod    
     def triangle(a, h):
         p = (a * h)/2
-        return f'Pole wynosi: {p:.2f}'        
+        return f'Pole wynosi: {p:.2f}' 
+class pojazd():
+    def __init__(self, marka, numer):
+        self.marka = marka
+        self.numer = numer
+        self.przebieg = 0
+        self.czy_wypożyczony = False
+    def __str__(self):
+        return 'Marka samochodu: {}\nNumer rejestracyjny: {}\nAktualny przebieg: {}\nPojazd wypożyczony: {}\n'.format(
+            self.marka,
+            self.numer,
+            self.przebieg,
+            self.czy_wypożyczony
+        )
+    def new_przebieg(self, km):
+        self.przebieg += km
+    def wypożycz(self):
+        if self.czy_wypożyczony == False:
+            self.czy_wypożyczony = True
+        else:
+            print("Samóchód jest niedostępny")
+class samochod_osobowy(pojazd):
+    typ = "Samochód osobowy"
+    def __init__(self, marka, numer, siedzenia):
+        self.siedzenia = siedzenia
+        super().__init__(marka, numer)
+    def __str__(self):
+        return 'Typ samochodu: {}\n{}Ilość siedzeń: {}\n'.format(
+            samochod_osobowy.typ,
+            super().__str__(),
+            self.siedzenia
+       )
+class samochod_dostawczy(pojazd):
+    typ = "Samochód dostawczy"
+    def __init__(self, marka, numer, pojemność):
+        self.pojemność = pojemność
+        super().__init__(marka, numer)
+    def __str__(self):
+        return 'Typ samochodu: {}\n{}Ładowność: {}ton\n'.format(
+            samochod_osobowy.typ,
+            super().__str__(),
+            self.pojemność
+        )
+class rental():
+    def __init__(self, name, *cars):
+        self.name = name
+        if cars:
+            self.cars_list = cars
+        else:
+            self.cars_list = []        
+    def __str__(self):
+        tab = []
+        index = 0
+        for x in self.cars_list:
+            index += 1
+            tab.append('{}. Marka: {}\nNumer rejestracyjny:{}\nPrzebieg: {}km\n{} {}{}'.format(
+                index,
+                x.marka,
+                x.numer,
+                x.przebieg,
+                x.siedzenia if x.typ == 'Samochód osobowy' else x.pojemność,
+                'miejsc' if x.typ == 'Samochód osobowy' else 'ton',
+                "\n=================="
+            ))
+        return 'Nazwa wypożyczalni: {}\nLista samochodów:\n\n{}'.format(
+            self.name,
+            '\n'.join(x for x in tab)
+        )
+    def add_carrs(self, *cars):
+        for x in cars:
+            self.cars_list.append(x)     
+    def show_free(self):
+        tab = []
+        index = 0
+        for x in self.cars_list:
+            if x.czy_wypożyczony == False:
+              index += 1
+              tab.append('{}. Marka: {}\nNumer rejestracyjny:{}\nPrzebieg: {}km\n{} {}{}'.format(
+                  index,
+                  x.marka,
+                  x.numer,
+                  x.przebieg,
+                  x.siedzenia if x.typ == 'Samochód osobowy' else x.pojemność,
+                  'miejsc' if x.typ == 'Samochód osobowy' else 'ton',
+                  "\n=========="
+              ))
+        print("DOSTĘPNE SAMOCHODY")      
+        print('\n'.join(x for x in tab))
+    def show_rented(self):
+        tab = []
+        index = 0
+        for x in self.cars_list:
+            if x.czy_wypożyczony == True:
+              index += 1
+              tab.append('{}. Marka: {}\nNumer rejestracyjny:{}\nPrzebieg: {}km\n{} {}{}'.format(
+                  index,
+                  x.marka,
+                  x.numer,
+                  x.przebieg,
+                  x.siedzenia if x.typ == 'Samochód osobowy' else x.pojemność,
+                  'miejsc' if x.typ == 'Samochód osobowy' else 'ton',
+                  "\n==========" 
+              ))
+        print("WYPOŻYCZONE SAMOCHODY")       
+        print('\n'.join(x for x in tab))
+    def rent(self, numer):
+        for x in self.cars_list:
+            if x.numer == numer:
+                x.wypożycz()
+    def derent(self, numer):            
+        for x in self.cars_list:
+            if x.numer == numer:
+                x.czy_wypożyczony = False
+                x.new_przebieg(int(input("Wprowadź ilość przejechanych kilometrów")))
+
+
 
 
 
