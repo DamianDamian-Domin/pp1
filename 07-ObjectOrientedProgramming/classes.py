@@ -148,10 +148,10 @@ class samochod_dostawczy(pojazd):
 class rental():
     def __init__(self, name, *cars):
         self.name = name
+        self.cars_list = []
         if cars:
-            self.cars_list = cars
-        else:
-            self.cars_list = []        
+            for x in cars:
+                self.cars_list.append(x)
     def __str__(self):
         tab = []
         index = 0
@@ -186,7 +186,7 @@ class rental():
                   x.przebieg,
                   x.siedzenia if x.typ == 'Samochód osobowy' else x.pojemność,
                   'miejsc' if x.typ == 'Samochód osobowy' else 'ton',
-                  "\n=========="
+                  "\n=================="
               ))
         print("DOSTĘPNE SAMOCHODY")      
         print('\n'.join(x for x in tab))
@@ -203,7 +203,7 @@ class rental():
                   x.przebieg,
                   x.siedzenia if x.typ == 'Samochód osobowy' else x.pojemność,
                   'miejsc' if x.typ == 'Samochód osobowy' else 'ton',
-                  "\n==========" 
+                  "\n==================" 
               ))
         print("WYPOŻYCZONE SAMOCHODY")       
         print('\n'.join(x for x in tab))
@@ -215,7 +215,7 @@ class rental():
         for x in self.cars_list:
             if x.numer == numer:
                 x.czy_wypożyczony = False
-                x.new_przebieg(int(input("Wprowadź ilość przejechanych kilometrów")))
+                x.new_przebieg(int(input("Wprowadź ilość przejechanych kilometrów: ")))
 
 
 
